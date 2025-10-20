@@ -1,0 +1,164 @@
+.add-user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 2rem;
+  background: #f7f9fc;
+}
+
+.user-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  width: 480px;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  i {
+    color: #007bff;
+    font-size: 1.2rem;
+  }
+
+  .close-btn {
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    color: #999;
+    cursor: pointer;
+
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.photo-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+
+  .photo-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px dashed #007bff;
+      padding: 4px;
+      transition: 0.3s;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    span {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.input-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #f9fafc;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+
+    i {
+      color: #007bff;
+      font-size: 0.9rem;
+    }
+
+    input, select {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 0.9rem;
+      color: #333;
+    }
+  }
+}
+
+.duties-box {
+  background: #f8f9fa;
+  border-left: 4px solid #007bff;
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+
+  h4 {
+    margin: 0 0 0.3rem 0;
+    font-size: 0.95rem;
+    color: #007bff;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  button {
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:first-child {
+    background: #007bff;
+    color: #fff;
+
+    &:hover {
+      background: #0069d9;
+    }
+  }
+
+  .cancel {
+    background: #e9ecef;
+    color: #333;
+
+    &:hover {
+      background: #d6d8db;
+    }
+  }
+}

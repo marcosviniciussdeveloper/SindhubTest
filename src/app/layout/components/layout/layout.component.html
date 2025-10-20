@@ -1,0 +1,64 @@
+<!-- ✅ sidebar.component.html -->
+<div class="layout-grid">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+
+    <!-- ===== Logo ===== -->
+    <div class="sidebar-header">
+      <i class="fas fa-building logo-icon"></i>
+      <div class="brand-info">
+        <h3>SindDesk</h3>
+        <span>Sistema de Gestão</span>
+      </div>
+    </div>
+
+    <!-- ===== Perfil do Usuário ===== -->
+    <div class="user-profile" *ngIf="user$ | async as user">
+      <img [src]="user.photoPath || '/assets/avatar-default.png'" alt="Avatar" class="avatar" />
+      <div class="user-details">
+        <strong>{{ user.name }}</strong>
+        <span>{{ user.positionName || user.role | titlecase }}</span>
+      </div>
+    </div>
+
+    <!-- ===== MENU PRINCIPAL ===== -->
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <i class="fas fa-home"></i>
+        <span>Início</span>
+      </a>
+
+      <a routerLink="/chat" routerLinkActive="active">
+        <i class="fas fa-comments"></i>
+        <span>Chat</span>
+        <span class="badge" *ngIf="pendingChats > 0">{{ pendingChats }}</span>
+      </a>
+
+      <a routerLink="/setores" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+        <i class="fas fa-cog"></i>
+        <span>Setores</span>
+      </a>
+
+      <a routerLink="/people" routerLinkActive="active">
+        <i class="fas fa-users"></i>
+        <span>Pessoas</span>
+      </a>
+    </nav>
+
+    <!-- ===== BOTÃO SAIR ===== -->
+    <div class="sidebar-footer">
+      <a (click)="logout()" class="logout-link">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Sair</span>
+      </a>
+    </div>
+
+  </aside>
+
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

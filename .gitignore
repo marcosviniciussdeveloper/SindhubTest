@@ -1,0 +1,86 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+
+# Compilados e dependências
+/node_modules
+/dist
+/tmp
+/out-tsc
+/.angular
+
+# Arquivos de build temporários
+*.log
+*.tmp
+
+# Arquivos de ambiente (contêm dados sensíveis)
+src/environments/environment.ts
+src/environments/environment.prod.ts
+*.env
+*.env.local
+*.env.*.local
+
+# Configurações locais
+/.vscode
+/.idea
+/.DS_Store
+Thumbs.db
+
+# Cache de ferramentas
+/.sass-cache
+/.npm
+/.yarn
+/.parcel-cache
+
+# Arquivos de testes
+/coverage
+*.lcov
+
+# Arquivos de build do TypeScript
+*.tsbuildinfo
+
+# Sistema operacional
+ehthumbs.db
+Icon?
+
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+# System files
+.DS_Store
+Thumbs.db

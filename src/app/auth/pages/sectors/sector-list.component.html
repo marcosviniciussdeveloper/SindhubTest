@@ -1,0 +1,93 @@
+<div class="sector-container" *ngIf="!isLoading; else loading">
+  <!-- Cabeçalho -->
+  <header class="sector-header">
+    <h2><i class="fas fa-layer-group"></i> Setores</h2>
+
+    <!-- ✅ Botão de criar novo setor -->
+    <button *ngIf="canCreate()" class="btn-create" (click)="openModal()">
+      <i class="fas fa-plus"></i> Novo Setor
+    </button>
+  </header>
+
+  <!-- Grid de setores -->
+  <div class="sector-grid">
+    <!-- 🔹 Adicionado trackById -->
+    <div
+      class="sector-card"
+      *ngFor="let sector of sectors; trackBy: trackById"
+      (click)="openSector(sector.id)"
+    >
+      <div class="sector-icon">
+        <i class="fas" [ngClass]="sector.icon || 'fa-building'"></i>
+      </div>
+
+      <h3>{{ sector.nameSector }}</h3>
+      <p class="description">{{ sector.description || 'Sem descrição' }}</p>
+
+      <div class="sector-hours" *ngIf="sector.openingsHours">
+        <i class="fas fa-clock"></i> {{ sector.openingsHours }}
+      </div>
+
+      <div class="sector-actions" *ngIf="canEdit()" (click)="$event.stopPropagation()">
+        <button class="btn-edit" (click)="openModal(sector)">
+          <i class="fas fa-pen"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading -->
+<ng-template #loading>
+  <div class="loading-state">
+    <i class="fas fa-spinner fa-spin"></i>
+    <p>Carregando setores...</p>
+  </div>
+</ng-template>
+
+<!-- Modal -->
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>
+        <i class="fas" [ngClass]="editingSector ? 'fa-edit' : 'fa-plus-circle'"></i>
+        {{ editingSector ? 'Editar Setor' : 'Novo Setor' }}
+      </h3>
+      <button class="close-btn" (click)="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <form [formGroup]="sectorForm" (ngSubmit)="saveSector()" class="modal-body">
+      <label>Nome do Setor</label>
+      <input formControlName="nameSector" placeholder="Ex: Suporte Técnico" />
+
+      <label>Descrição</label>
+      <textarea formControlName="description" rows="3" placeholder="Descreva o setor..."></textarea>
+
+      <label>Horário de Funcionamento</label>
+      <input formControlName="openingsHours" placeholder="Ex: 08:00 - 18:00" />
+
+      <label>Ícone do Setor</label>
+      <div class="icon-picker">
+        <div
+          *ngFor="let icon of availableIcons; trackBy: trackByIcon"
+          class="icon-option"
+          [class.selected]="sectorForm.value.icon === icon"
+          (click)="selectIcon(icon)"
+        >
+          <i class="fas" [ngClass]="icon"></i>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" [disabled]="isSaving">
+          <i class="fas fa-save"></i> Salvar
+        </button>
+        <button type="button" class="cancel" (click)="closeModal()">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

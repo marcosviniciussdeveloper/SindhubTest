@@ -1,0 +1,47 @@
+<div class="login-page-wrapper">
+
+    <!-- Painel Esquerdo (branding) -->
+    <div class="login-promo-panel">
+        <h1>Sind Desk</h1>
+        <p>Bem-vindo ao seu sistema de suporte técnico</p>
+    </div>
+
+    <!-- Painel Direito (formulário de login) -->
+    <div class="login-form-panel">
+        <div class="login-card">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <h2>Faça login para iniciar!</h2>
+
+                <!-- Campo Usuário -->
+                <label class="form-group label-input">
+                    <i class="fas fa-user icon-modify"></i>
+                    <input id="userName" formControlName="userName" placeholder="Usuário" autocomplete="username" />
+                </label>
+
+                <!-- Campo Senha -->
+                <label class="form-group label-input">
+                    <i class="fas fa-lock icon-modify"></i>
+
+                    <input id="password" formControlName="password" [type]="showPassword ? 'text' : 'password'"
+                        placeholder="Senha" autocomplete="current-password" />
+
+                    <!-- Ícone do olhinho -->
+                    <i class="toggle-password fas" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"
+                        (click)="togglePassword()"></i>
+                </label>
+
+                <!-- Botão de Login -->
+                <button type="submit" class="btn" [class.loading]="isLoading" [disabled]="isLoading">
+                    <span *ngIf="!isLoading">ENTRAR</span>
+                    <span *ngIf="isLoading" class="spinner"></span>
+                </button>
+
+                <!-- Mensagem de Erro -->
+                @if (errorMessage) {
+                <p class="error-message">{{ errorMessage }}</p>
+                }
+            </form>
+        </div>
+    </div>
+</div>

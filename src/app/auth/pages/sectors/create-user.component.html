@@ -1,0 +1,176 @@
+<div class="add-user-container">
+  <div class="user-card">
+    <!-- Cabeçalho -->
+    <div class="header">
+      <i class="fas fa-user-plus"></i>
+      <h2>Adicionar Colaborador</h2>
+      <button type="button" class="close-btn" (click)="goToSectors()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Formulário -->
+    <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="form-content">
+      <!-- Upload de foto -->
+      <div class="photo-section">
+        <label class="photo-upload">
+          <img
+            [src]="selectedImage || '/assets/avatar-default.png'"
+            alt="Foto do usuário"
+          />
+          <input type="file" (change)="onFileSelected($event)" hidden />
+          <span>Clique na câmera para adicionar foto</span>
+        </label>
+      </div>
+
+      <!-- Campos principais -->
+      <div class="input-grid">
+        <div class="input-pair">
+          <label>
+            <i class="fas fa-user"></i>
+            <input
+              formControlName="name"
+              type="text"
+              placeholder="Nome completo"
+            />
+          </label>
+
+          <label>
+            <i class="fas fa-user-tag"></i>
+            <input
+              formControlName="userName"
+              type="text"
+              placeholder="Nome de usuário"
+            />
+          </label>
+        </div>
+
+        <label>
+          <i class="fas fa-id-card"></i>
+          <input
+            formControlName="cpf"
+            type="text"
+            placeholder="000.000.000-00"
+          />
+        </label>
+
+        <label>
+          <i class="fas fa-envelope"></i>
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="email@empresa.com"
+          />
+        </label>
+
+        <label>
+          <i class="fas fa-lock"></i>
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Senha inicial"
+          />
+        </label>
+
+        <!-- ===============================
+             🔹 Setor - aparece apenas para MASTER
+        ================================= -->
+        <div *ngIf="userRole === 'Master'">
+          <label>
+            <i class="fas fa-briefcase"></i>
+            <select formControlName="sectorId">
+              <option value="">Selecione o Setor</option>
+              <option
+                *ngFor="let sector of sectors"
+                [value]="sector.id"
+              >
+                {{ sector.nameSector }}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <!-- ===============================
+             🔹 Setor - ADMIN (campo só de exibição)
+        ================================= -->
+        <div *ngIf="userRole === 'Admin'">
+          <label>
+            <i class="fas fa-briefcase"></i>
+            <input
+              type="text"
+              [value]="'Setor atual (vinculado automaticamente)'"
+              disabled
+            />
+          </label>
+        </div>
+
+        <!-- Região -->
+        <label>
+          <i class="fas fa-map-marker-alt"></i>
+          <select formControlName="regionId">
+            <option value="">Selecione a Região</option>
+            <option
+              *ngFor="let region of regions"
+              [value]="region.id"
+            >
+              {{ region.nameRegion }}
+            </option>
+          </select>
+        </label>
+
+        <!-- Cargo -->
+        <label>
+          <i class="fas fa-user-tie"></i>
+          <select
+            formControlName="positionId"
+            (change)="onPositionChange($event)"
+          >
+            <option value="">Selecione o Cargo</option>
+            <option
+              *ngFor="let pos of positions"
+              [value]="pos.id"
+            >
+              {{ pos.positionName }}
+            </option>
+          </select>
+        </label>
+
+        <!-- Atribuições -->
+        <div *ngIf="selectedDuties" class="duties-box">
+          <h4><i class="fas fa-tasks"></i> Atribuições</h4>
+          <p>{{ selectedDuties }}</p>
+        </div>
+
+        <!-- ===============================
+             🔹 Função / Role
+             - Master pode criar Admins, Supervisores e Agentes
+             - Admin pode criar apenas Agentes e Supervisores
+        ================================= -->
+        <label>
+          <i class="fas fa-user-shield"></i>
+          <select formControlName="role">
+            <option
+              *ngIf="userRole === 'Master'"
+              value="Admin"
+            >
+              Admin
+            </option>
+            <option value="Supervisor">Supervisor</option>
+            <option value="Agent">Agent</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- Botões -->
+      <div class="actions">
+        <button type="submit" [disabled]="isSubmitting">
+          <i class="fas fa-save"></i> Salvar
+        </button>
+
+        <button type="button" class="cancel" (click)="goToSectors()">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

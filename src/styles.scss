@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+// Reseta básico
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7fa; // Um fundo cinza-claro, como no seu design
+    color: #333;
+}
+
+// Estilos de botões que vamos reusar
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-primary {
+    background-color: #4f46e5; // Cor azul/roxa
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #eef2ff;
+    color: #4f46e5;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+
+}
+
+
+@import 'ngx-toastr/toastr';
+
+.toast-success {
+  background-color: #4caf50 !important;
+  color: #fff !important;
+}
+
+.toast-error {
+  background-color: #f44336 !important;
+  color: #fff !important;
+}
